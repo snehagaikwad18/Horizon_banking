@@ -3,12 +3,13 @@ import RightSidebar from "@/components/RightSidebar";
 // import RecentTransactions from '@/components/RecentTransactions';
 // import RightSidebar from '@/components/RightSidebar';
 import TotalBalanceBox from "@/components/TotalBalanceBox";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 // import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 // import { getLoggedInUser } from '@/lib/actions/user.actions';
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   // const currentPage = Number(page as string) || 1;
-  const loggedIn = { firstName: "Sneha" , lastName:"Gaikwad" , email:"connect.sneha@gmail.com" };
+  const loggedIn =await getLoggedInUser();
   // const accounts = await getAccounts({
   //   userId: loggedIn.$id
   // })
@@ -27,7 +28,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={loggedIn?.firstName || "Guest"}
+            user={loggedIn?.name || "Guest"}
             subtext="Access and manage your account and transactions efficiently."
           />
 
